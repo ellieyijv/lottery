@@ -2,7 +2,8 @@
 <div class="quickplayStyle">
    <h4>Grab a QuickPick</h4>
    <p>Looking for options like system and PowerHit entries, multi-weeks and choosing your own numbers? Create your own entry now.</p>
-     <q-card  v-for="playItem in plays" :key="playItem.title" inline color="white" class="q-ma-sm">
+     <q-card v-for="playItem in plays" :key="playItem.title" :name="playItem.title" inline color="white" class="q-ma-sm" @mouseover.native="cardMove(playItem.title)"
+             @mouseout.native="cardMove(playItem.title)" >
       <q-card-title>
         {{playItem.title}}
         <span slot="subtitle">{{playItem.subTitle}}</span>
@@ -59,9 +60,9 @@ export default {
  
 
   created () {
-    
-  },
+    },
   mounted () {
+    // console.log(document.getElementsByName('6 games')[0].style)
     axios
       .get('/powerball/list')
       .then(response => (this.plays = response.data.data))
@@ -73,11 +74,23 @@ export default {
       }
      
   },
+
    methods: {
        addToCart(playItem){     
          this.$store.dispatch('increment', playItem)
-       }
-      },
- 
+       },
+      
+      cardMove(name){
+       
+        let width = document.getElementsByName(name)[0].style.width
+        if(width == "" || width == "300px"){
+          document.getElementsByName(name)[0].style.width = 330 + 'px'
+        }else{
+          document.getElementsByName(name)[0].style.width = 300 + 'px'
+        }
+        
+        
+      }
+   }
 }
 </script>

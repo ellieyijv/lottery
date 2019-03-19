@@ -8,13 +8,12 @@ mongoose.connect(DB_URL)
 
 
 const models ={
-     order:{
-        itemID:{type: String, require:true},
-        itemName:{type:String, require:true},
-        itemQty:{type:Number, require:true},
-        itemPrice:{type:Number, require:true},
+     Order:{
+        item:{type:Object, require:true},
         totalAmount:{type:Number, require:true},
-        userInfo:{type:Object, require:true}
+        userInfo:{type:Object, require:true},
+        orderNumber:{type:Number, require:true},
+        orderDate:{type:Date, require:true}
     },
 
     powerball:{

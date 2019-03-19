@@ -12,9 +12,33 @@
     <link rel="icon" href="statics/quasar-logo.png" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="32x32" href="statics/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="statics/icons/favicon-16x16.png">
+    <script>
+        var autocomplete;
+        function initAutocomplete() {
+          console.log("come to autocomplete");
+          return
+          // Create the autocomplete object, restricting the search predictions to
+          // geographical location types.
+          autocomplete = new google.maps.places.Autocomplete(
+            document.getElementById("autocomplete"),
+            { types: ["geocode"] }
+          );
+  
+          // Avoid paying for data that you don't need by restricting the set of
+          // place fields that are returned to just the address components.
+          autocomplete.setFields("address_components");
+  
+          // When the user selects an address from the drop-down, populate the
+          // address fields in the form.
+          // autocomplete.addListener('place_changed', fillInAddress);
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDMxef9nXXCzOHLNX7vqCQ0vEprW61-E0&libraries=places"
+    async defer></script>
   </head>
   <body>
     <!-- DO NOT touch the following DIV -->
     <div id="q-app"></div>
   </body>
+
 </html>

@@ -53,13 +53,15 @@ export default new Vuex.Store({
   },
   mutations:{
     increment(state, item){
+       console.log(item)
        let index = state.itemList.findIndex(one=>one.name == item.title)
        if (index == -1) {
            const product = {
              name: item.title,
              qty: 1,
              price: item.price,
-             subtitle: item.subTitle
+             subtitle: item.subTitle,
+             itemId: item._id
            }
            state.itemList.push(product)
            
